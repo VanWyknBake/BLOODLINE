@@ -133,7 +133,7 @@ img{
         position: fixed;
         top: var(--header-height);
         right: -100%;
-        width: 80%;
+        width: 40%;
         height: 100%;
         padding: 2rem;
         background-color: rgba(255,255,255,.3);
@@ -187,7 +187,7 @@ img{
     overflow: hidden;
 }
 .home__container{
-    height: calc(100vh - var(--header-height));
+    height: calc(150vh - var(--header-height));
     row-gap: 5rem;
 }
 .home__title{
@@ -290,7 +290,8 @@ img{
 
 /* ===== PORTFOLIO =====*/
 .portfolio{
-    background-color: var(--white-color);
+    background-color: var(--text-color);
+    color:white;
 }
 .portfolio__container{
     justify-items: center;
@@ -299,10 +300,34 @@ img{
 .portfolio__img{
     position: relative;
     overflow: hidden;
+
+    width: 300px;
+    height: 250px;
+
+
 }
 .portfolio__img img{
     border-radius: .5rem;
+    opacity:70%;
+    position:center;
+
 }
+
+.portfolio__img2{
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    height: 50px;
+
+}
+.portfolio__img2 img{
+    border-radius: .5rem;
+    width: 100px;
+    height: 50px;
+}
+
+
+
 .portfolio__link{
     position: absolute;
     bottom: -100%;
@@ -445,7 +470,7 @@ img{
     .home__img{
         width: 550px;
         right: 20%;
-        
+
     }
 
     .about__container{
@@ -468,9 +493,10 @@ img{
     }
 
     .portfolio__container{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         column-gap: 2rem;
+
     }
 
     .contact__container{

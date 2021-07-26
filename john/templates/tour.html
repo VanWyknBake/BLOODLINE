@@ -1,0 +1,231 @@
+{% extends 'account/base.html' %}
+{% load static %}
+
+{% block content %}
+<!--===== HOME =====-->
+            <section class="home" id="home">
+                <div class="home__container bd-grid">
+                    <h1 class="home__title"><span>{{ home.greetings_1 }}</span><br></h1>
+
+
+                    <div class="home__scroll" style="z-index:10;">
+                    {% if user.is_active  %}
+                        <a href="#tour" class="home__scroll-link"><i class='bx bx-up-arrow-circle bx-fade-up' ></i></a>
+                    {% else %}
+                        <a href="#tour" class="home__scroll-link"><i class='bx bx-up-arrow-circle bx-fade-up' ></i></a>
+                    {% endif %}
+                    </div>
+                    {% if user.is_active %}
+                    <br>
+                    <br>
+                    <p class="about__text" style=" color: white; z-index:10; text-align:center;font-family:'Monsterat';text-shadow: 0 3px 2px var(--dark-color);">&nbsp;Welcome to Tournaments {{ user.username }}</p>
+                    {% else %}
+                    <p class="about__text" style=" color: white; z-index:10; text-align:center;font-family:'Monsterat'; text-shadow: 0 3px 2px var(--dark-color);">Welcome to Tournaments</p>
+
+                    {% endif %}
+
+                    <img src="{{ home.picture.url }}" alt="" class="home__img">
+                </div>
+            </section>
+
+
+               <!--Tournaments-->
+
+            <section class="about container bd-grid" id="tour">
+                <h2 class="section-title">BloodLine Tournaments</h2>
+                <small><p style='text-align:center;'><i>Note that each room ID will be available 30min before starting time.</i></p></small><br>
+
+                {% for t in tourn %}
+
+
+
+
+
+
+                <div class="skills__container " style="color:white;text-align:center;border:1px solid white;border-radius: 5px; box-shadow:1px 1px 5px 1px black; padding:10px;background-image: radial-gradient(var(--dark-color), black);">
+
+
+                <h2 style="text-align:center;" class="about__profession"><u>{{t.tp|upper}}</u></h2>
+                    <div class="skills__img" style="display: block;
+  margin-left: auto;
+  margin-right: auto;height:auto;
+  width: 50%;border:1px solid white;border-radius: 8px;padding:3px;">
+                        <img src="{% static 'assets/img/2.jpg' %}" alt="">
+                    </div>
+                    <br>
+                    <div style="text-align:center;">
+
+                        <h2 class="about__profession"><b>Host:&nbsp;</b> {{ t.host|upper }}</h2>
+                        <span class="about__profession"><b>Game Type:&nbsp;</b> {{ t.macth }}</span>
+                        <p class="about__text"><b>Details:&nbsp;</b> {{ t.details }}</p>
+                        <p class="about__text"><b>When:&nbsp;</b> {{ t.when }}</p>
+                        {% if t.room %}
+                        <small><p class="contact__text"><i>Click ID to Copy!</i></p></small>
+   <p class="about__text"><b>ROOM ID:&nbsp;</b>&nbsp;<input onclick="Hello()" type="text" class="btn btn-dark btn-outline-danger" value='{{t.room}}' id="myInput" readonly>
+
+   <br><br>
+
+
+
+<script>
+  function Hello() {
+  var copyText = document.getElementById('myInput')
+  copyText.select();
+  document.execCommand('copy')
+  console.log('Copied Text')
+}
+</script>
+
+
+                        {% else %}
+                        <p class="about__text" style="color:red;">No Room ID</p>
+                        {% endif %}
+                        <div class="fb-share-button" data-href="https://bloodlineclan.pythonanywhere.com/tour" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbloodlineclan.pythonanywhere.com%2Ftour&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+
+
+
+
+                    </div>
+
+                </div>
+                <br>
+            {% endfor %}
+
+            </section>
+
+            <!--Results-->
+            <section class="about section" id="results">
+                <h2 class="section-title">Results</h2>
+                <small><p style="text-align:center;"><i>Some results of passed tournaments and scrims hosted by BloodLine</i></p></small><br>
+
+                <head>
+                    <style>
+                    table {
+                    border-radius:3px;
+                    border-collapse: collapse;
+                    width: 100%;
+                    color:white;
+                    background-color: var(--first-color)
+                    }
+
+                    td, th {
+                    border: 1px solid black;
+                    
+                    text-align: center;
+                    padding: 8px;
+                    }
+
+                    tr:nth-child(even) {
+                    background-color: var(--dark-color);
+                    color: white;
+                    }
+                    </style>
+                </head>
+
+                    <div class="about__text" style="justify-content:center; text-align:center;">
+                        
+                        <table>
+                            <tr>
+                                <th><b>Host</b></th>
+                                <th><b>Date</b></th>
+                                <th><b>Game Type</b></th>
+                                <th><b>Result</b></th>
+                            </tr>
+                            
+                            
+                            
+                           <tr>
+                            
+                           
+                            {%for r in results %}
+                                {% if r.name %}
+                                <td>{{ r.name }}</td>
+                                {% else %}
+                                <td>{{ r.game }}</td>
+                                {% endif %}
+                                
+                                <td>{{ r.when }}</td>
+                                <td>{{ r.gametype }}</td>
+                                
+                                <td>{{ r.result }}</td>
+                                
+                                
+                                
+                            
+                            </tr>
+                            {% endfor %}
+                      
+
+                                
+
+                            
+                            
+                        </table>
+                            
+                        
+                        
+                    
+
+                    
+                </div>
+            </section>
+
+            <!-- STORE -->
+
+
+            <section class="portfolio section" id="store">
+                <h2 class="section-title" style="color:white;">STORE (COMING SOON!)</h2>
+
+
+                {% for s in store %}
+                
+                <div class="portfolio__container bd-grid">
+                
+
+
+                    <div class="portfolio__img" style="width:150px; height:200px;">
+                    <h2 class="about__text" style='text-align:center;'>{{s.name}}</h2>
+                        <img src="{{ s.image.url }}" alt="">
+
+                        <div class="portfolio__link">
+                            <h1><a href="{{ s.link }}" target='_blank' class="portfolio__link-name" style='color:black;'><i style='color:green;' class="bx bx-cart bx-flashing"></i>R {{s.price}}</a></h1>
+                        </div>
+
+
+                    </div>
+
+
+                {% endfor %}
+
+                </div>
+            </section>
+            
+
+
+
+
+        <!--===== FOOTER =====-->
+        <footer class="footer section" id='footer'>
+            <div class="footer__container bd-grid" style='text-align:center;'>
+                <div class="footer__data">
+                    <h2 class="footer__title">BLOODLINE :</h2>
+                    <p class="footer__text" style='color:white;'>STAY TUNED...</p>
+                </div>
+
+
+
+                <div class="footer__data">
+                    <h2 class="footer__title">FOLLOW US</h2>
+                    <a href="#" class="footer__social"><i class='bx bxl-facebook' ></i></a>
+                    <a href="#" class="footer__social"><i class='bx bxl-discord' ></i></a>
+                    <a href="#" class="footer__social"><i class='bx bxl-twitch' ></i></a>
+                </div>
+
+
+            </div>
+        </footer>
+
+
+
+
+{% endblock content %}

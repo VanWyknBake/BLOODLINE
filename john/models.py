@@ -110,6 +110,17 @@ class Results(models.Model):
 
     def __str__(self):
         return self.result
+
+
+class Store(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='store/')
+    link = models.URLField(max_length=200)
+    price = models.IntegerField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
     
 
 

@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Home, About, Profile, Category, Results, Skills, Portfolio, Streamers, Tourn
+from .models import Home, About, Profile, Category, Results, Skills, Portfolio, Store, Streamers, Tourn
 
 
 # Home
 admin.site.register(Home)
-
 
 # About
 class ProfileInline(admin.TabularInline):
@@ -34,3 +33,4 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Portfolio)
 admin.site.register(Streamers)
 admin.site.register(Results)
+admin.site.register(Store)
